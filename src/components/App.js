@@ -43,7 +43,7 @@ function App() {
   return (
     <div className="app">
       {loaded ? (<>
-        <SushiContainer budget={budget} sushis={sushis} />
+        <SushiContainer budget={budget} sushis={sushis} changeBudget={decrementBudgetBy} />
         <Table budget={budget} />
       </>) : <p>Loading...</p>}
     </div>
