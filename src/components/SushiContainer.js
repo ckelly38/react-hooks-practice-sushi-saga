@@ -38,7 +38,7 @@ function SushiContainer({budget, sushis, changeBudget}) {
       else return esushi;
     });
     setEatenSushi(nweatensushi);
-    changeBudget(sushiobj.price);
+    changeBudget(sushiobj);
   }
 
   let mysushicomps = null;

@@ -8,6 +8,7 @@ function App() {
   const [loaded, setIsLoaded] = useState(false);
   const [sushis, setSushis] = useState([]);
   const [budget, setMoney] = useState(100);
+  const [plates, setPlates] = useState([]);
 
   function decrementBudgetBy(cost)
   {
@@ -23,6 +24,30 @@ function App() {
       alert("Error: you cannot go into debt, but this item puts you over budget!");
     }
     else setMoney(budget - cost);
+  }
+
+  function putSushiPlateOnTable(sushiobj)
+  {
+    if (sushiobj === undefined || sushiobj === null)
+    {
+      throw new Error("the eaten sushi object must be defined, but it was not!");
+    }
+    //else;//do nothing
+
+    let nwplates = [...plates, sushiobj];
+    setPlates(nwplates);
+  }
+
+  function eatSushiAndDecrementBudget(sushiobj)
+  {
+    if (sushiobj === undefined || sushiobj === null)
+    {
+      throw new Error("the eaten sushi object must be defined, but it was not!");
+    }
+    //else;//do nothing
+    
+    decrementBudgetBy(sushiobj.price);
+    putSushiPlateOnTable(sushiobj);
   }
 
   useEffect(() => {
@@ -43,8 +68,8 @@ function App() {
   return (
     <div className="app">
       {loaded ? (<>
-        <SushiContainer budget={budget} sushis={sushis} changeBudget={decrementBudgetBy} />
-        <Table budget={budget} />
+        <SushiContainer budget={budget} sushis={sushis} changeBudget={eatSushiAndDecrementBudget} />
+        <Table budget={budget} plates={plates} />
       </>) : <p>Loading...</p>}
     </div>
   );
