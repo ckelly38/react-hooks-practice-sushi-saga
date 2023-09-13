@@ -1,9 +1,23 @@
 import React from "react";
 
-function Sushi({sushiobj}) {
+function Sushi({sushiobj, budget}) {
+  function eatSushi(event)
+  {
+    if (budget < sushiobj.price)
+    {
+      console.error("Error: you cannot eat this item! It puts you over budget and you are not allowed " +
+        "to go into debt!");
+      return;
+    }
+    else
+    {
+      //
+    }
+  }
+
   return (
     <div className="sushi">
-      <div className="plate" onClick={/* Give me a callback! */ null}>
+      <div className="empty plate" onClick={eatSushi}>
         {/* Tell me if this sushi has been eaten! */}
         {false ? null : (
           <img

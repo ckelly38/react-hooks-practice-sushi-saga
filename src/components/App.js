@@ -7,6 +7,23 @@ const API = "http://localhost:3001/sushis";
 function App() {
   const [loaded, setIsLoaded] = useState(false);
   const [sushis, setSushis] = useState([]);
+  const [budget, setMoney] = useState(100);
+
+  function decrementBudgetBy(cost)
+  {
+    if (cost === undefined || cost === null || isNaN(cost) || cost < 0)
+    {
+      throw new Error("invalid cost found and used here!");
+    }
+    //else;//do nothing
+
+    if (budget < cost)
+    {
+      console.error("this item costs too much!");
+      alert("Error: you cannot go into debt, but this item puts you over budget!");
+    }
+    else setMoney(budget - cost);
+  }
 
   useEffect(() => {
     fetch(API).then((response) => response.json()).then(function(response){
@@ -26,8 +43,8 @@ function App() {
   return (
     <div className="app">
       {loaded ? (<>
-        <SushiContainer sushis={sushis} />
-        <Table />
+        <SushiContainer budget={budget} sushis={sushis} />
+        <Table budget={budget} />
       </>) : <p>Loading...</p>}
     </div>
   );

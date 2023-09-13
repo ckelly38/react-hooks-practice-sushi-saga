@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import MoreButton from "./MoreButton";
 import Sushi from "./Sushi";
 
-function SushiContainer({sushis}) {
+function SushiContainer({budget, sushis}) {
   const [startid, setStartId] = useState(sushis[0].id);
 
   let mysushicomps = null;
@@ -12,7 +12,7 @@ function SushiContainer({sushis}) {
     mysushicomps = sushis.map((sushi) => {
       if (sushi.id === startid || (startid < sushi.id && sushi.id < startid + 4))
       {
-        return (<Sushi key={sushi.id} sushiobj={sushi} />);
+        return (<Sushi key={sushi.id} budget={budget} sushiobj={sushi} />);
       }
       else return null;
     });
@@ -20,8 +20,8 @@ function SushiContainer({sushis}) {
 
   function incrementStartId()
   {
-    console.log("OLD startid = " + startid);
-    console.log("sushis.length = " + sushis.length);
+    //console.log("OLD startid = " + startid);
+    //console.log("sushis.length = " + sushis.length);
     if (startid + 4 > sushis.length) setStartId(sushis[0].id);
     else setStartId(startid + 4);
   }
