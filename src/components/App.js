@@ -47,7 +47,10 @@ function App() {
     //else;//do nothing
     
     decrementBudgetBy(sushiobj.price);
+    console.log("succesfully decremented the budget!");
     putSushiPlateOnTable(sushiobj);
+    console.log("successfully ate the sushi item and added a new plate on the table and " +
+      "decremented budget!");
   }
 
   useEffect(() => {
